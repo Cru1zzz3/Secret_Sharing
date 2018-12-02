@@ -63,14 +63,14 @@ vector<int> gen_shadows(int k, int& M, int p, int n, vector <int> shadows){
 	return shadows;
 }
 
-vector <int> multiply_polynoms(vector<vector<int>> basisPolynoms,vector<int> multipliedPolynom){
-	
-	vector<int> polynom1 = basisPolynoms[0];
-	vector<int> polynom2 = basisPolynoms[1];
+vector <int> multiply_polynoms(vector<int> polynom1,vector<int> polynom2){
+	vector<int> multipliedPolynom;
+	//vector<int> polynom1 = basisPolynoms[0];
+	//vector<int> polynom2 = basisPolynoms[1];
 
 	int m = 0;
-	for (int i = 0; i < basisPolynoms.size(); i++){
-		for (int j = 0; j < basisPolynoms[i].size(); j++){
+	for (int i = 0; i < polynom1.size(); i++){
+		for (int j = 0; j < polynom2.size(); j++){
 			if (multipliedPolynom.size() <= (i + j))
 				multipliedPolynom.push_back(0);
 			multipliedPolynom[i + j] += (polynom1[i] * polynom2[j]);
@@ -83,7 +83,6 @@ vector <int> multiply_polynoms(vector<vector<int>> basisPolynoms,vector<int> mul
 		else
 			multipliedPolynom[i] = multipliedPolynom[i] % 13;
 		}
-
 
 	return multipliedPolynom;
 }
@@ -113,11 +112,14 @@ vector <int> calculating_basis_polynom(vector<idShadowStruct> idShadowVector, in
 			}
 		}
 		
-		multipliedPolynom = multiply_polynoms(basisPolynoms,multipliedPolynom); // (x^2 - 8x + 15)
-		denominator; // 3
+		multipliedPolynom = multiply_polynoms(basisPolynoms[0],basisPolynoms[1]); // (x^2 - 8x + 15)
+		denominator = 9; // 3
+		vector<int> denominatorVector;
+		denominatorVector.push_back(denominator);
 		// алгоритм евклида к знаменателю
 		// 
-		//multipliedPolynom = multiply_polynoms((vector<int>)denominator,multipliedPolynom); 
+		multipliedPolynom = multiply_polynoms(denominatorVector,multipliedPolynom); 
+
 	}
 
 	
